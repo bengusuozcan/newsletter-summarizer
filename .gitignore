@@ -1,0 +1,16 @@
+# Secrets (never commit these)
+.env
+credentials.json
+token.json
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Output artifacts
+summaries*.jsonl
+summaries_for_phone*.txt
+
+# Editors
+.vscode/
+.idea/
