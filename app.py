@@ -13,6 +13,7 @@ from gmail_tools import (
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+# replace "labelname" with the relevant Gmail label
 
 # ---------- SUMMARIZER ----------
 def summarize_email(subject, body, date_iso):
@@ -74,7 +75,7 @@ def save_jsonl(rows, out_path):
 
 
 # ---------- JOBS ----------
-def job_backlog_from_label(label_name: str, out_path="summaries_joshua_clear.jsonl"):
+def job_backlog_from_label(label_name: str, out_path="summaries_labelname.jsonl"):
     """ONE-TIME: summarize EVERYTHING under an existing Gmail label."""
     msgs = list_all_by_label(label_name)
     results = []
@@ -125,7 +126,7 @@ if __name__ == "__main__":
 
     o = sub.add_parser("once", help="Summarize unread from a specific address (one-time)")
     o.add_argument("--from_addr", required=True, help="Email address to search (exact)")
-    o.add_argument("--apply_label", default="Joshua Clear",
+    o.add_argument("--apply_label", default="labelname",
                    help="Label to apply after summarizing")
     o.add_argument("--no-archive", action="store_true",
                    help="Do not archive after labeling")
@@ -133,7 +134,7 @@ if __name__ == "__main__":
     d = sub.add_parser("daily",
                        help="Daily mode: unread from address -> summarize -> label -> archive")
     d.add_argument("--from_addr", required=True, help="Email address to search")
-    d.add_argument("--apply_label", default="Joshua Clear",
+    d.add_argument("--apply_label", default="labelname",
                    help="Label to apply after summarizing")
 
     args = parser.parse_args()
