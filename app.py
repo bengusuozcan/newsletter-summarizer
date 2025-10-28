@@ -122,7 +122,7 @@ if __name__ == "__main__":
 
     b = sub.add_parser("backlog", help="Summarize all emails under a Gmail label (one-time)")
     b.add_argument("--label", required=True,
-                   help="Existing Gmail label name, e.g., 'Joshua Clear'")
+                   help="Existing Gmail label name, e.g., 'labelname'")
 
     o = sub.add_parser("once", help="Summarize unread from a specific address (one-time)")
     o.add_argument("--from_addr", required=True, help="Email address to search (exact)")
